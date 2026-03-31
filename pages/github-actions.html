@@ -1,0 +1,45 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feyman's Learning Technique</title>
+    <link rel="stylesheet" href="../index.css">
+</head>
+<body>
+    <div class="srcs">
+        Sources
+        <ol>
+            <li> <a href="https://www.youtube.com/watch?v=JmhfOjuAaew"> The Organic Chemistry Tutor's Youtube video</a></li>
+            
+        </ol>
+    </div>
+
+
+    <div class="content">
+         github actions is a CI/CD platform, it allows your build, test, and deployment pipeline. You can run scripts on actions such as push, pull requests etc.
+Such scripts can build and test the pull requests and deploy the changes to production.
+
+Actions goes beyond devops, when other events happens in your repos, such as automatically add the appropriate label to new issues.
+Github provides linux, window, and macOs virtual machines to run your workflows, or you can host your own self-hosted runners in your own data center or cloud infra. (by going to self-hosted runners in runners sections)
+
+What is CI & CD?
+CI -> continuous integration means people can make changes to the code and merge them in a central location, 
+CD -> means deploying code on regular basis.
+
+For github to recongnize any action workflows in your repo, you must save the workflow files in a directory called ./github/workflows.
+
+
+Different pipelines: why different pipelines, build, test and deployment pipeline?
+
+Components of workflow:
+1. Event: you can trigger workflow on event. event can be some specific activity, workflow can be triggered via REST API and also run on schedule.
+2. Workflow:  workflow contains one or more jobs which run in parallel or sequential order, each job runs in its own virtual machine or container. each job contains steps that either run a script or run an action(which is a reusable extension that can simplify your workflow). 
+A workflow is an automated process that will run one or more jobs. Workflows are defined by a YAML file. workflow is triggered by some event. A repo can have multiple workflows. each running on different trigger. workflow can reference to another workflow.
+
+
+
+    </div>
+
+
+</body>
+</html>
