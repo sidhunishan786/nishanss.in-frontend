@@ -1,0 +1,31 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2122-B-Pile-Shuffling</title>
+</head>
+<body>
+
+    problem: https://codeforces.com/contest/2122/problem/B
+
+    I didn't get AC until I used below two lines inside my main function.
+
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    so what do these lines do:
+    ios::sync_with_stdio(false); - by default the stream of c++ and c are synced to which allows you to write a code which can use both 
+    scanf/printf and cin/cout. If you unsync these streams mix both c and c++ style I/O will give you unexpected result.
+
+    cin.tie(nullptr); this unties the cin from cout. by default both cin & cout streams in c++ are tied, which means that before operation 
+    on the stream, the other stream's buffer is flushed (by deault to increase efficencicy the stream buffers are flushed on different intervals,
+    for instance the output buffer is flushed on demand or only on demand & input buffer is only flushed when it becomes equal block size).
+
+    This helps in expected user interaction flushing cout stream buffer before cin streams buffer is used.
+
+    What is flushing of the stream? - "Until recently I thought flushing was erasing data from the stream". Now I can see from where 
+    that idea came, mainly due to the fact that I didn't know buffers and that the data was stored in the buffer.
+    flushing actually means to send the data to its destination from buffer and clear the buffer.
+
+</body>
+</html>
