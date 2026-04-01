@@ -16,29 +16,52 @@
 
 
     <div class="content">
-         github actions is a CI/CD platform, it allows your build, test, and deployment pipeline. You can run scripts on actions such as push, pull requests etc.
-Such scripts can build and test the pull requests and deploy the changes to production.
-
-Actions goes beyond devops, when other events happens in your repos, such as automatically add the appropriate label to new issues.
-Github provides linux, window, and macOs virtual machines to run your workflows, or you can host your own self-hosted runners in your own data center or cloud infra. (by going to self-hosted runners in runners sections)
-
-What is CI & CD?
-CI -> continuous integration means people can make changes to the code and merge them in a central location, 
-CD -> means deploying code on regular basis.
-
-For github to recongnize any action workflows in your repo, you must save the workflow files in a directory called ./github/workflows.
-
-
-Different pipelines: why different pipelines, build, test and deployment pipeline?
-
-Components of workflow:
-1. Event: you can trigger workflow on event. event can be some specific activity, 
+        github actions is a CI/CD platform, it allows your build, test, and deployment pipeline. 
+        You can run scripts on actions such as push, pull requests etc.
+        Such scripts can build and test the pull requests and deploy the changes to production.
+        Actions goes beyond devops, when other events happens in your repos, 
+        such as automatically add the appropriate label to new issues.
+        Github provides linux, window, and 
+        macOs virtual machines to run your workflows, 
+        or you can host your own self-hosted runners 
+        in your own data center or cloud infra. (by going to self-hosted runners in runners sections)
+        What is CI & CD?
+        CI -> continuous integration means people can make changes to the code and merge them in a central location, 
+        CI means committing code into shared repo frequently. 
+        CD -> using automation to deploy your application changes to PROD.
+        
+        For github to recongnize any action workflows in your repo, 
+        you must save the workflow files in a directory called ./github/workflows.
+        
+        Different pipelines: why different pipelines, build, test and deployment pipeline?
+        
+        Components of workflow:
+        1. Event: you can trigger workflow on event. event can be some specific activity, 
+        
 workflow can be triggered via REST API and also run on schedule.
-2. Workflow:  workflow contains one or more jobs which run in parallel or sequential order, 
-each job runs in its own virtual machine or container. each job contains steps that either 
-run a script or run an action(which is a reusable extension that can simplify your workflow). 
-A workflow is an automated process that will run one or more jobs. Workflows are defined by a YAML file. 
-workflow is triggered by some event. A repo can have multiple workflows. each running on different trigger. workflow can reference to another workflow.
+        2. Workflow:  workflow contains one or more jobs which run in parallel or 
+        sequential order, 
+each job runs in its own virtual machine or container. 
+        each job contains steps that either 
+run a script or run an action(which is a reusable 
+        extension that can simplify your workflow). 
+        A workflow is an automated process that will run one or more jobs. Workflows are defined by a YAML file. 
+        
+workflow is triggered by some event. A repo can have multiple workflows. each running on different trigger. 
+        workflow can reference to another workflow.
+
+        3. Job: job is a collections of steps which run on the same runner, eachs step is either a shell script or an action.
+        steps execute in order & run on same runner so they can share data. we can configure job dependencies; 
+        by default they run in parallel. If job has any dependencies it will wait for it to finish.
+
+        4. actions -> actions are set of predefined jobs or code which perform specific task in workflow (e.g. checking out
+        git repo), this reduces repetitive code
+
+        5. runners: server on which your workflow runs, each workflow is executed on freshly provisioned VM. each runner can run a 
+        single job at a time.
+        
+
+
 
 <!--office-->
 
