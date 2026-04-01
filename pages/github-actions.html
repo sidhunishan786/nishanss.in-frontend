@@ -32,9 +32,32 @@ For github to recongnize any action workflows in your repo, you must save the wo
 Different pipelines: why different pipelines, build, test and deployment pipeline?
 
 Components of workflow:
-1. Event: you can trigger workflow on event. event can be some specific activity, workflow can be triggered via REST API and also run on schedule.
-2. Workflow:  workflow contains one or more jobs which run in parallel or sequential order, each job runs in its own virtual machine or container. each job contains steps that either run a script or run an action(which is a reusable extension that can simplify your workflow). 
-A workflow is an automated process that will run one or more jobs. Workflows are defined by a YAML file. workflow is triggered by some event. A repo can have multiple workflows. each running on different trigger. workflow can reference to another workflow.
+1. Event: you can trigger workflow on event. event can be some specific activity, 
+workflow can be triggered via REST API and also run on schedule.
+2. Workflow:  workflow contains one or more jobs which run in parallel or sequential order, 
+each job runs in its own virtual machine or container. each job contains steps that either 
+run a script or run an action(which is a reusable extension that can simplify your workflow). 
+A workflow is an automated process that will run one or more jobs. Workflows are defined by a YAML file. 
+workflow is triggered by some event. A repo can have multiple workflows. each running on different trigger. workflow can reference to another workflow.
+
+<!--office-->
+
+workflow must have following basic components: event to trigger it, one or more job which contains series of steps. 
+
+following steps occur to trigger a workflow run:
+1. an event occurs on your repo, the event has an associated commit SHA and Git Ref.
+2. github searches for .github/workflows directory in the root of repo for workflow files to be present in the associated commit SHA or Git ref of the event.
+3. A workflow run is triggered if the event matches the ON in the workflow file. when workflow runs github sets GITHUB_SHA (commit SHA) and GITHUB_REF (git Ref) enviroment
+vars in the runner ENV.
+
+
+variables: you can set the varialbes (usually contain reusable data) and they are interpolated in the workflow file can be used. variable can be set via env key in workflow
+file or via setting of github repo.
+
+
+context: it is a information about workflows, vars, runner env, job and steps. each context is an object that contains properties which can be strings or other objects.
+context can be accessed via ${{context}}
+
 
 
 
