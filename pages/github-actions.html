@@ -75,11 +75,50 @@ vars in the runner ENV.
 
 
 variables: you can set the varialbes (usually contain reusable data) and they are interpolated in the workflow file can be used. variable can be set via env key in workflow
-file or via setting of github repo.
+file or via setting of github repo. varibles can be used only in the runner, means in the steps which are executing on some machine. you can't use it before runner is running.
+
 
 
 context: it is a information about workflows, vars, runner env, job and steps. each context is an object that contains properties which can be strings or other objects.
-context can be accessed via ${{context}}
+context can be accessed via ${{context}}, 
+check contexts carefully they can contain malacious code which might be executed in workflow file.
+
+When to use contexts: you can use conext atmost at any point in the workflow, including when default variables would be unavailable.  
+
+
+expressions: you can use expression to evaluate some conditions, expression can be combinations of literal values, references to a context or functions.
+expressions are commonly used in If keyword, 
+e.g. if ${{< expressoin > }}
+settting ENV variables:
+env: 
+MY_ENV_VAR: ${{< expression > }}
+
+
+Resuable workflow configurations: we don't need to copy paste the workflow, instead if we have permission we can invoke another workflow from currently running workflow
+this avoids duplication
+the workflow which calls is called caller workflow and which is called is called "called" workflow. 
+you can also view dependency graph to check UI of dependencies
+when you run a called workflows (which is in different repo) its contexts (all context vars) are made same as caller workflow.
+
+
+composite actions vs reusable workflows:
+both help us to avoid duplicate code.
+reusable workflow allows you to run the entire workflow (jobs and steps) but in composite actions combine multiple steps that you can then 
+run within a single job just like actions
+
+1. composite actions can't contain jobs, its just collection of steps run like single step.
+2. in case of composite jobs only one log will be visible in logs, while in called workflows each step and job is logged.
+3. composite actions run on the same machine as the workflow which they are part of. if you want to run some steps on different machine, create another workflow.
+4. passing output to steps, in case of composite actions you can add steps before or after the composite action as they run in job steps. But the reusable workflows run 
+on job level you can't add steps before or after those.
+
+Workflow templates: when referencing a workflow by commit SHA you can ensure that everyone is using a same workflow, on the other hand when referncing the workflow 
+by branch or tag this can cause issues.
+
+YAML anchors & aliases - anchor (&) identifies a piece of content that you want to reuse, while alais repeats that content in another location.
+anchor is named template and alias is using that template.
+
+custom actions 
 
 
 
